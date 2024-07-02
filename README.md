@@ -21,8 +21,16 @@ The CheckoutScreen component displays the items added to the cart.
 Users can remove items from the cart using the "remove" button.
 
 ## CartContext
-The CartContext is used to manage the cart state throughout the app.
 It provides functions to add and remove items from the cart.
+
+## implementing data storage with AsyncStorage
+Loading Cart Data:
+When the component mounts (useEffect with empty dependency array), it attempts to load the cart data from AsyncStorage.
+If data exists, it parses and sets it to the cart state.
+
+Saving Cart Data:
+Whenever the cart state changes (useEffect with cart as a dependency), it saves the current cart data to AsyncStorage.
+This implementation ensures that the cart data is persisted across app sessions, providing a seamless experience for the user.
 
 ## Navigation
 Navigation is handled using React Navigation.
