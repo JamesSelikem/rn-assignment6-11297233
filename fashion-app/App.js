@@ -1,28 +1,21 @@
-import React from 'react';
+import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useFonts, Pacifico_400Regular } from '@expo-google-fonts/pacifico';
-import AppLoading from 'expo-app-loading';
-import HomeScreen from './HomeScreen'; 
+import HomeScreen from './HomeScreen';
+import CheckoutScreen from './CheckoutScreen';
+import { CartProvider } from './CartContext';
 
 const Stack = createStackNavigator();
 
-const App = () => {
-  let [fontsLoaded] = useFonts({
-    Pacifico_400Regular,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
-
+export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <CartProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Checkout" component={CheckoutScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </CartProvider>
   );
-};
-
-export default App;
+}
